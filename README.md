@@ -8,7 +8,16 @@ The Java OCS library is an introductory language-specific examples of programmin
 
 The library is not intended to show every endpoint and every option/parameter for endpoints it has. The library is known to be incomplete.
 
-### To install the library locally:
+## Installing the Library Locally
+
+### Using Eclipse:
+
+1. Clone a local copy of the GitHub repository.
+1. In Eclipse, select `File` > `Import` > `Maven`> `Existing maven project` 
+1. Select the local copy, and click Finish to add it to your workspace
+
+### Using Command Line:
+
 1. Clone a local copy of the GitHub repository.
 1. Download `apache-maven-x.x.x.zip` from [http://maven.apache.org](http://maven.apache.org) and extract it.
 1. Setting environment variables.
@@ -26,7 +35,7 @@ The library is not intended to show every endpoint and every option/parameter fo
 
 \*Currently this project is not hosted on the central Maven repo and must be compiled and installed locally.
 
-Tests are done by testing the sample apps that use this
+Tests are done by testing the sample apps that use this library.
 
 Developed against Maven 3.6.1 and Java 1.8.0_181.
 
