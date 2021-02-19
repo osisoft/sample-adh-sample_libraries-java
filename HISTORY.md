@@ -1,5 +1,9 @@
 # Version History
 
+## 0.0.23-preview / 2021-02-19
+
+- Updated dependencies
+
 ## 0.0.22-preview / 2020-11-03
 
 - Polaris fixes
