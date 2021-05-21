@@ -33,6 +33,25 @@ public class SdsTypeProperty {
     }
 
     /**
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param sdsType SdsType
+     * @param isKey
+     * @param uom
+     */
+    public SdsTypeProperty(String id, String name, String description, SdsType sdsType, boolean isKey, String uom)
+    {
+        setName(name);
+        setId(id);
+        setDescription(description);
+        setSdsType(sdsType);
+        setIsKey(isKey);
+        setUom(uom);
+    }
+
+    /**
      * 
      * @param id
      * @param name
@@ -57,6 +76,7 @@ public class SdsTypeProperty {
     private SdsType SdsType;
     private boolean IsKey;
     private int Order;
+    private String Uom;
 
     /**
      * gets name
@@ -152,6 +172,22 @@ public class SdsTypeProperty {
      */
     public void setOrder(int order) {
         Order = order;
+    }
+
+    /**
+     * gets uom
+     * @return
+     */
+    public String getUom() {
+        return Uom;
+    }
+
+    /**
+     * sets uom
+     * @param uom
+     */
+    public void setUom(String uom) {
+        Uom = uom;
     }
     
 }
