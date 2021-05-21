@@ -21,12 +21,12 @@ public class Field {
     }
 
     public Field(Field field) {
-        this.Source = field.Source;
-        this.Keys = field.Keys;
-        this.Label = field.Label;
-        this.IncludeUom = field.IncludeUom;
-        this.SummaryDirection = field.SummaryDirection;
-        this.SdsSummaryType = field.SdsSummaryType;
+        this.Source = field.getSource();
+        this.Keys = field.getKeys();
+        this.Label = field.getLabel();
+        this.IncludeUom = field.getIncludeUom();
+        this.SummaryDirection = field.getSummaryDirection();
+        this.SdsSummaryType = field.getSdsSummaryType();
     }
 
     public FieldSource getSource() {
