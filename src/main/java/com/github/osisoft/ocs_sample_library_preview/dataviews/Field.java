@@ -1,6 +1,7 @@
 package com.github.osisoft.ocs_sample_library_preview.dataviews;
 
-import com.github.osisoft.ocs_sample_library_preview.sds.SdsSummaryType;
+import com.github.osisoft.ocs_sample_library_preview.*;
+import com.github.osisoft.ocs_sample_library_preview.sds.*;
 
 public class Field {
     private FieldSource Source;
@@ -15,26 +16,8 @@ public class Field {
         this.Keys = keys;
         this.Label = label;
         this.IncludeUom = false;
-        this.SummaryDirection = com.github.osisoft.ocs_sample_library_preview.dataviews.SummaryDirection.Forward;
-        this.SdsSummaryType = com.github.osisoft.ocs_sample_library_preview.sds.SdsSummaryType.None;
-    }
-
-    public Field(FieldSource source, String[] keys, String label, boolean includeUom) {
-        this.Source = source;
-        this.Keys = keys;
-        this.Label = label;
-        this.IncludeUom = includeUom;
-        this.SummaryDirection = com.github.osisoft.ocs_sample_library_preview.dataviews.SummaryDirection.Forward;
-        this.SdsSummaryType = com.github.osisoft.ocs_sample_library_preview.sds.SdsSummaryType.None;
-    }
-
-    public Field(FieldSource source, String[] keys, String label, boolean includeUom, SummaryDirection summaryDirection, SdsSummaryType sdsSummaryType) {
-        this.Source = source;
-        this.Keys = keys;
-        this.Label = label;
-        this.IncludeUom = includeUom;
-        this.SummaryDirection = summaryDirection;
-        this.SdsSummaryType = sdsSummaryType;
+        this.SummaryDirection = SummaryDirection.Forward;
+        this.SdsSummaryType = SdsSummaryType.None;
     }
 
     public Field(Field field) {
