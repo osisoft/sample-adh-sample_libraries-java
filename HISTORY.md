@@ -5,6 +5,7 @@
 - Added IncludeUom property to Field class
 - Added SummaryDirection to Field class and enum to package
 - Added SdsSummaryType to Field class and enum to package
+- Added Uom to Sds Property class
 
 ## 0.0.26-preview / 2021-05-19
 
