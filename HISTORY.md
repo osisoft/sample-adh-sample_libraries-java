@@ -1,5 +1,15 @@
 # Version History
 
+## 0.0.27-preview / 2021-05-24
+
+- Added IncludeUom property to Field class
+- Added SummaryDirection to Field class and enum to package
+- Added SdsSummaryType to Field class and enum to package
+
+## 0.0.26-preview / 2021-05-19
+
+- Updated dependencies
+
 ## 0.0.25-preview / 2021-04-13
 
 - Updated dependencies
