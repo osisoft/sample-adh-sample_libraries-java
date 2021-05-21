@@ -9,7 +9,7 @@ public class Field {
     private String Label;
     private boolean IncludeUom;
     private SummaryDirection SummaryDirection;
-    private SdsSummaryType SdsSummaryType;
+    private SdsSummaryType SummaryType;
 
     public Field(FieldSource source, String[] keys, String label) {
         this.Source = source;
@@ -17,7 +17,7 @@ public class Field {
         this.Label = label;
         this.IncludeUom = false;
         this.SummaryDirection = SummaryDirection.Forward;
-        this.SdsSummaryType = SdsSummaryType.None;
+        this.SummaryType = SdsSummaryType.None;
     }
 
     public Field(Field field) {
@@ -26,7 +26,7 @@ public class Field {
         this.Label = field.getLabel();
         this.IncludeUom = field.getIncludeUom();
         this.SummaryDirection = field.getSummaryDirection();
-        this.SdsSummaryType = field.getSdsSummaryType();
+        this.SummaryType = field.getSummaryType();
     }
 
     public FieldSource getSource() {
@@ -63,7 +63,7 @@ public class Field {
 
     public void setSummaryDirection(SummaryDirection summaryDirection) { this.SummaryDirection = summaryDirection; }
 
-    public SdsSummaryType getSdsSummaryType() { return SdsSummaryType; }
+    public SdsSummaryType getSummaryType() { return SummaryType; }
 
-    public void setSdsSummaryType(SdsSummaryType sdsSummaryType) { this.SdsSummaryType = sdsSummaryType; }
+    public void setSummaryType(SdsSummaryType summaryType) { this.SummaryType = summaryType; }
 }
