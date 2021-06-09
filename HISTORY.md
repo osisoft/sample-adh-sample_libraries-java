@@ -1,5 +1,9 @@
 # Version History
 
+## 0.0.28-preview / 2021-06-09
+
+- Updated dependencies
+
 ## 0.0.27-preview / 2021-05-24
 
 - Added IncludeUom property to Field class
