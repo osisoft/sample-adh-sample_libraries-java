@@ -1,5 +1,9 @@
 # Version History
 
+## 0.1.0-preview / 2021-06-30
+
+- Added required features for sample community steps
+
 ## 0.0.28-preview / 2021-06-09
 
 - Updated dependencies
