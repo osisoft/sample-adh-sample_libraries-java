@@ -20,7 +20,15 @@ public class RolesClient {
     private String requestBase = "api/{apiVersion}/Tenants/{tenantId}";
     private String rolesBase = requestBase + "/Roles";
 
-    public String CommunityMember = "f79a55da-7c76-4600-a809-0f62ca9971d9";
+    public String TenantAdministratorRoleTypeId = "2dc742ab-39ea-4fc0-a39e-2bcb71c26a5f";
+    public String TenantContributorRoleTypeId = "f1439595-e5a2-487f-8a4f-0627fefe75df";
+    public String TenantDataStewardRoleTypeId = "45b66433-5f57-420b-bbdf-8bbd60c1cd9d";
+    public String TenantMemberRoleTypeId = "7ad2b9ef-5386-4ead-ac9f-ad99c5c5b977";
+    public String TenantViewerRoleTypeId = "e6cbf91e-0be8-4858-92b5-f88ecafd5574";
+    
+    public String CommunityAdministratorRoleTypeId = "b50b3349-fa9e-4a03-9220-cf99184b4645";
+    public String CommunityModeratorRoleTypeId = "f49f69a6-61b2-423e-8ad5-d58841be441c";
+    public String CommunityMemberRoleTypeId = "f79a55da-7c76-4600-a809-0f62ca9971d9";
 
     public RolesClient(BaseClient base) {
         baseClient = base;
