@@ -120,6 +120,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -162,6 +164,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -199,6 +203,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -248,6 +254,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -288,6 +296,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -332,6 +342,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -381,6 +393,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -414,6 +428,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -459,6 +475,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -496,6 +514,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -545,6 +565,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -583,6 +605,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -624,6 +648,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -669,6 +695,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -709,6 +737,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -724,13 +754,24 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getLastValue(String tenantId, String namespaceId, String streamId) throws SdsError {
+        return getLastValueUrl(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
+        .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
+    }
+
+    /***
+     * gets the last value of a stream
+     * 
+     * @param path path to the stream
+     * @return string of the last value
+     * @throws SdsError any error that occurs
+     */
+    public String getLastValueUrl(String path) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
 
         try {
-            url = new URL(baseUrl + getLastValuePath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
-                    .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
+            url = new URL(path + "/Data/Last");
             urlConnection = baseClient.getConnection(url, "GET");
 
             int httpResult = urlConnection.getResponseCode();
@@ -748,6 +789,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -790,6 +833,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -876,6 +921,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -921,6 +968,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -998,6 +1047,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -1045,6 +1096,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -1098,6 +1151,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return response;
@@ -1142,6 +1197,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1184,6 +1241,8 @@ public class StreamsClient {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1219,6 +1278,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -1258,6 +1319,8 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -1302,6 +1365,49 @@ public class StreamsClient {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /***
+     * patches the access control of a stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    the stream to update the access control of
+     * @param patch       JsonArray
+     * @throws SdsError any error that occurs
+     */
+    public void patchAccessControl(String tenantId, String namespaceId, String streamId, JsonArray patch) throws SdsError {
+
+        try {
+            HttpClient httpClient = HttpClient.newHttpClient();
+
+            String url = baseUrl + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
+                    .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId) + "/AccessControl";
+            URI uri = URI.create(url);
+            String body = mGson.toJson(patch);
+            HttpRequest request = baseClient.getRequest(uri).method("PATCH", BodyPublishers.ofString(body)).build();
+
+            HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
+            int httpResult = response.statusCode();
+            if (baseClient.isSuccessResponseCode(httpResult)) {
+            } else {
+                throw new Error("patch stream access control request failed");
+            }
+        } catch (Error error) {
+            throw error;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException mal) {
+            System.out.println("MalformedURLException");
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

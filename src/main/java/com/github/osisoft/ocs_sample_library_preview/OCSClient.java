@@ -7,6 +7,8 @@ import java.util.Map;
 
 import com.github.osisoft.ocs_sample_library_preview.sds.*;
 import com.github.osisoft.ocs_sample_library_preview.dataviews.*;
+import com.github.osisoft.ocs_sample_library_preview.security.*;
+import com.github.osisoft.ocs_sample_library_preview.community.*;
 
 /**
  * Client to call into for interacting with OCS
@@ -25,6 +27,14 @@ public class OCSClient {
      * Client to help with interactions with types
      */
     public TypesClient Types;
+    /**
+     * Client to help with interactions with roles
+     */
+    public RolesClient Roles;
+    /**
+     * Client to help with interactions with communities
+     */
+    public CommunitiesClient Communities;
     /**
      * Helper with json actions
      */
@@ -60,6 +70,8 @@ public class OCSClient {
         DataViews = new DataViewClient(baseClient);
         Types = new TypesClient(baseClient);
         Streams = new StreamsClient(baseClient);
+        Roles = new RolesClient(baseClient);
+        Communities = new CommunitiesClient(baseClient);
         mGson = baseClient.mGson;
     }
 
