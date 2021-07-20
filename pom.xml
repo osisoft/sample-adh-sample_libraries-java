@@ -4,7 +4,7 @@
 
   <groupId>com.github.osisoft.ocs_sample_library_preview</groupId>
   <artifactId>ocs_sample_library_preview</artifactId>
-  <version>0.1.1-preview</version>
+  <version>0.1.2-preview</version>
 
   <name>ocs_sample_library_preview</name>
   <description>A preview of an OCS (OSIsoft Cloud Services) client library</description>
@@ -87,7 +87,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.10.0</version>
+        <version>2.11.0</version>
     </dependency>
   </dependencies>
 
@@ -122,7 +122,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
