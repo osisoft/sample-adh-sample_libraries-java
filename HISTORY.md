@@ -1,5 +1,9 @@
 # Version History
 
+## 0.1.3-preview / 2021-07-15
+
+- Added index collection value retrieval to the SdsStream class
+
 ## 0.1.2-preview / 2021-07-15
 
 - Updated dependencies
