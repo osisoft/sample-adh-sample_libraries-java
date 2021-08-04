@@ -54,6 +54,7 @@ public class StreamsClient {
             + "/Transform?startIndex={startIndex}&endindex={endindex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}";
     private String getRangeInterpolatedQuery = dataBase
             + "/Transform/Interpolated?startIndex={startIndex}&endindex={endindex}&count={count}";
+    private String getIndexCollectionQuery = dataBase + "/Transform/Interpolated?index={index}";
     private String getRangeStreamViewQuery = dataBase
             + "/Transform?startIndex={startIndex}&skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}&streamViewId={streamViewId}";
     private String updateMultiplePath = dataBase;
@@ -265,7 +266,7 @@ public class StreamsClient {
     /**
      * gets the specified stream
      * 
-     * @param tenantId    tenant to wrok against
+     * @param tenantId    tenant to work against
      * @param namespaceId namespace to work against
      * @param streamId    stream to get
      * @return the stream as a string
@@ -754,8 +755,8 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getLastValue(String tenantId, String namespaceId, String streamId) throws SdsError {
-        return getLastValueUrl(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
-        .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
+        return getLastValueUrl(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion)
+                .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
     }
 
     /***
@@ -1105,6 +1106,58 @@ public class StreamsClient {
     }
 
     /**
+     * gets values at the indexes provided
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    the stream to get values from
+     * @param index       the list of indexes to retrieve values for
+     * @return string of the array of values
+     * @throws SdsError any error that occurs
+     */
+    public String getIndexCollectionValues(String tenantId, String namespaceId, String streamId,
+            ArrayList<String> index) throws SdsError {
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+        String response = "";
+
+        try {
+            String indexString = index.get(0);
+            for (int i = 1; i < index.size(); i++) {
+                indexString += "&index=" + index.get(i);
+            }
+
+            String intermediate = getIndexCollectionQuery.replace("{apiVersion}", apiVersion)
+                    .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId)
+                    .replace("{streamId}", streamId).replace("{index}", indexString);
+            url = new URL(baseUrl + intermediate);
+            urlConnection = baseClient.getConnection(url, "GET");
+
+            int httpResult = urlConnection.getResponseCode();
+
+            if (httpResult == HttpURLConnection.HTTP_OK || httpResult == HttpURLConnection.HTTP_CREATED) {
+            } else {
+                throw new SdsError(urlConnection, "get range of interpolated values request failed");
+            }
+
+            response = baseClient.getResponse(urlConnection);
+        } catch (SdsError sdsError) {
+            sdsError.print();
+            throw sdsError;
+        } catch (MalformedURLException mal) {
+            System.out.println("MalformedURLException");
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    /**
      * gets a range of values from a streamview
      * 
      * @param tenantId     tenant to work against
@@ -1380,7 +1433,8 @@ public class StreamsClient {
      * @param patch       JsonArray
      * @throws SdsError any error that occurs
      */
-    public void patchAccessControl(String tenantId, String namespaceId, String streamId, JsonArray patch) throws SdsError {
+    public void patchAccessControl(String tenantId, String namespaceId, String streamId, JsonArray patch)
+            throws SdsError {
 
         try {
             HttpClient httpClient = HttpClient.newHttpClient();
