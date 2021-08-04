@@ -1122,12 +1122,9 @@ public class StreamsClient {
         String response = "";
 
         try {
-            String indexString = "";
-            for (int i = 0; i < index.size(); i++) {
-                if (i == 0)
-                    indexString = index.get(i);
-                else
-                    indexString += "&index=" + index.get(i);
+            String indexString = index.get(0);
+            for (int i = 1; i < index.size(); i++) {
+                indexString += "&index=" + index.get(i);
             }
 
             String intermediate = getIndexCollectionQuery.replace("{apiVersion}", apiVersion)
