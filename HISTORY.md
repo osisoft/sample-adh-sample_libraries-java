@@ -1,8 +1,9 @@
 # Version History
 
-## 0.1.4-preview / 2021-08-06
+## 0.2.0-preview / 2021-08-06
 
 - Added stored data retrieval for data views
+- Renamed DataViewClient.GetDataViewData() to DataViewClient.GetDataViewInterpolatedData()
 - updated dependencies
 - Cleaned up gitignore
 
