@@ -36,6 +36,7 @@ public class DataViewClient {
     private String getFieldMappings;
     private String getStatistics;
     private String dataInterpolatedPath;
+    private String dataStoredPath;
     private String getDataInterpolated;
     private String getDataStored;
 
@@ -630,7 +631,7 @@ public class DataViewClient {
      *         to the Next and First pages of data.
      * @throws SdsError Error response
      */
-    public ResponseWithLinks getDataViewStoredData(String namespaceId, String dataViewId, String startIndex, String endIndex,
+    public ResponseWithLinks getDataViewStoredData(String namespaceId, String dataViewId, String startIndex, String endIndex
             ) throws SdsError, MalformedURLException {
         return getDataViewStoredData(namespaceId, dataViewId, startIndex, endIndex, "default", "Refresh", 1000);
     }

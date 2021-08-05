@@ -1,8 +1,9 @@
 # Version History
 
-## 0.1.4-preview / 2021-08-09
+## 0.1.4-preview / 2021-08-06
 
 - Added stored data retrieval for data views
+- updated dependencies
 
 ## 0.1.3-preview / 2021-07-15
 
