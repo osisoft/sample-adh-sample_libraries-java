@@ -554,6 +554,67 @@ public class DataViewClient {
     }
 
     /**
+     * Deprecated: This function has been deprecated in favor of getDataViewInterpolatedData()
+     *
+     * Get interpolated data for the provided index parameters with paging.
+     * See documentation on paging for further information.
+     *
+     * @param namespaceId The namespace identifier
+     * @param dataViewId  The data view identifier
+     * @param startIndex  The requested start index, inclusive. The default value is
+     *                    the .DefaultStartIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param endIndex    The requested end index, inclusive. The default value is
+     *                    the .DefaultEndIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param interval    The requested interval between index values. The default
+     *                    value is the .DefaultInterval of the data view. Optional
+     *                    if a default is specified.
+     * @return ResponseWithLinks, an object containing the String Response in the
+     *         requested format, and if returned by the server, also includes links
+     *         to the Next and First pages of data.
+     * @throws SdsError Error response
+     */
+    public ResponseWithLinks getDataViewData(String namespaceId, String dataViewId, String startIndex, String endIndex,
+                                                         String interval) throws SdsError, MalformedURLException {
+        return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval);
+    }
+
+    /**
+     * Deprecated: This function has been deprecated in favor of getDataViewInterpolatedData()
+     *
+     * Get interpolated data for the provided index parameters with paging.
+     * See documentation on paging for further information.
+     *
+     * @param namespaceId The namespace identifier
+     * @param dataViewId  The data view identifier
+     * @param startIndex  The requested start index, inclusive. The default value is
+     *                    the .DefaultStartIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param endIndex    The requested end index, inclusive. The default value is
+     *                    the .DefaultEndIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param interval    The requested interval between index values. The default
+     *                    value is the .DefaultInterval of the data view. Optional
+     *                    if a default is specified.
+     * @param form        The requested data output format. Output formats: default,
+     *                    table, tableh, csv, csvh.
+     * @param cache       "Refresh" to force the resource to re-resolve. "Preserve"
+     *                    to use cached information, if available. "Refresh" is the
+     *                    default value.
+     * @param count       The requested page size. The default value is 1000. The
+     *                    maximum is 250,000.
+     * @return ResponseWithLinks, an object containing the String Response in the
+     *         requested format, and if returned by the server, also includes links
+     *         to the Next and First pages of data.
+     * @throws SdsError Error response
+     */
+    public ResponseWithLinks getDataViewData(String namespaceId, String dataViewId, String startIndex, String endIndex,
+            String interval, String form, String cache, Integer count) throws SdsError, MalformedURLException {
+        return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval, form, cache, count);
+    }
+
+    /**
      * Get interpolated data for the provided index parameters with paging. 
      * See documentation on paging for further information.
      *
