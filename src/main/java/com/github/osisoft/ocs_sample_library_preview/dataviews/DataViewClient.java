@@ -575,6 +575,7 @@ public class DataViewClient {
      *         to the Next and First pages of data.
      * @throws SdsError Error response
      */
+    @Deprecated
     public ResponseWithLinks getDataViewData(String namespaceId, String dataViewId, String startIndex, String endIndex,
                                                          String interval) throws SdsError, MalformedURLException {
         return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval);
@@ -609,6 +610,7 @@ public class DataViewClient {
      *         to the Next and First pages of data.
      * @throws SdsError Error response
      */
+    @Deprecated
     public ResponseWithLinks getDataViewData(String namespaceId, String dataViewId, String startIndex, String endIndex,
             String interval, String form, String cache, Integer count) throws SdsError, MalformedURLException {
         return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval, form, cache, count);
