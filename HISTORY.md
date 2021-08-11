@@ -4,7 +4,7 @@
 
 - Added stored data retrieval for data views
 - Aliased DataViewClient.GetDataViewData() to DataViewClient.GetDataViewInterpolatedData()
-- updated dependencies
+- Updated dependencies
 - Cleaned up gitignore
 
 ## 0.1.3-preview / 2021-07-15
