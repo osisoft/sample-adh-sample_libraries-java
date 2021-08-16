@@ -4,7 +4,7 @@
 
   <groupId>com.github.osisoft.ocs_sample_library_preview</groupId>
   <artifactId>ocs_sample_library_preview</artifactId>
-  <version>0.1.3-preview</version>
+  <version>0.1.4-preview</version>
 
   <name>ocs_sample_library_preview</name>
   <description>A preview of an OCS (OSIsoft Cloud Services) client library</description>
@@ -55,7 +55,7 @@
       <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-nop</artifactId>
-          <version>1.7.31</version>
+          <version>1.7.32</version>
       </dependency>
       <dependency>
           <groupId>org.apache.commons</groupId>

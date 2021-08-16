@@ -1,5 +1,12 @@
 # Version History
 
+## 0.1.4-preview / 2021-08-10
+
+- Added stored data retrieval for data views
+- Aliased DataViewClient.GetDataViewData() to DataViewClient.GetDataViewInterpolatedData()
+- Updated dependencies
+- Cleaned up gitignore
+
 ## 0.1.3-preview / 2021-07-15
 
 - Added index collection value retrieval to the SdsStream class
