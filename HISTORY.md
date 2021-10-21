@@ -3,6 +3,8 @@
 ## 0.1.5-preview / 2021-10-21
 
 - Updated dependencies
+- Fixed readme link
+- Updated metadata in pox.xml
 
 ## 0.1.4-preview / 2021-08-10
 
