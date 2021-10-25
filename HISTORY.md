@@ -4,7 +4,7 @@
 
 - Updated dependencies
 - Fixed readme link
-- Updated metadata in pox.xml
+- Updated metadata in pom.xml
 
 ## 0.1.4-preview / 2021-08-10
 
