@@ -1,6 +1,6 @@
 # OSIsoft Cloud Services Java Library Sample
 
-**Version:** 0.1.4-preview
+**Version:** 0.1.5-preview
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-sample_libraries-java?repoName=osisoft%2Fsample-ocs-sample_libraries-java&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2621&repoName=osisoft%2Fsample-ocs-sample_libraries-java&branchName=main)
 
@@ -43,6 +43,6 @@ Developed against Maven 3.6.1 and Java 1.8.0_181.
 
 ---
 
-For the main OCS sample libraries page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SAMPLE_LIBRARIES_README.md)  
+For the main OCS sample libraries page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SAMPLE_LIBRARIES.md)  
 For the main OCS samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
 For the main OSIsoft samples page [ReadMe](https://github.com/osisoft/OSI-Samples)
