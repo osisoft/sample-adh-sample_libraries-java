@@ -34,7 +34,7 @@ variables:
     value: Lib_Java
 
 jobs:
-    - template: '/miscellaneous/build_templates/code-analysis.yml@templates'
+  - template: '/miscellaneous/build_templates/code-analysis.yml@templates'
     parameters:
       buildSteps:
         - task: Maven@3
