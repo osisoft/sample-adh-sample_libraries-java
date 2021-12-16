@@ -273,6 +273,20 @@ public class StreamsClient {
      * @throws SdsError
      */
     public String getStream(String tenantId, String namespaceId, String streamId) throws SdsError {
+        return getStream(tenantId, namespaceId, streamId, baseClient.getHttpHeadersForRequest()); 
+    }
+    
+    /**
+     * gets the specified stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get
+     * @param headers     http headers to use in request
+     * @return the stream as a string
+     * @throws SdsError
+     */
+    public String getStream(String tenantId, String namespaceId, String streamId, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -280,7 +294,7 @@ public class StreamsClient {
         try {
             url = new URL(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResponse = urlConnection.getResponseCode();
             if (httpResponse == HttpURLConnection.HTTP_OK) {
@@ -306,7 +320,7 @@ public class StreamsClient {
     }
 
     /**
-     * gets a streams
+     * get streams
      * 
      * @param tenantId    tenant to work against
      * @param namespaceId namespace to work against
@@ -316,8 +330,23 @@ public class StreamsClient {
      * @return Arraylist<SdsStream>
      * @throws SdsError any error that occurs
      */
-    public ArrayList<SdsStream> getStreams(String tenantId, String namespaceId, String query, String skip, String count)
-            throws SdsError {
+    public ArrayList<SdsStream> getStreams(String tenantId, String namespaceId, String query, String skip, String count) throws SdsError {
+        return getStreams(tenantId, namespaceId, query, skip, count, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * get streams
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param query       query used to help filter the results
+     * @param skip        number of streams to skip, used for paging
+     * @param count       number of streams to return
+     * @param headers     http headers to use in request
+     * @return Arraylist<SdsStream>
+     * @throws SdsError any error that occurs
+     */
+    public ArrayList<SdsStream> getStreams(String tenantId, String namespaceId, String query, String skip, String count, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -326,7 +355,7 @@ public class StreamsClient {
             url = new URL(baseUrl + getStreamsPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{query}", query).replace("{skip}", skip)
                     .replace("{count}", count));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResponse = urlConnection.getResponseCode();
             if (httpResponse == HttpURLConnection.HTTP_OK) {
@@ -491,6 +520,20 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public ArrayList<String> getTags(String tenantId, String namespaceId, String streamId) throws SdsError {
+        return getTags(tenantId, namespaceId, streamId, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets the tags assocaited with the stream in a community
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get tags of
+     * @param headers     http headers to use in request
+     * @return ArrayList<String> of tags
+     * @throws SdsError any error that occurs
+     */
+    public ArrayList<String> getTags(String tenantId, String namespaceId, String streamId, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -498,7 +541,7 @@ public class StreamsClient {
         try {
             url = new URL(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId) + "/Tags");
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResponse = urlConnection.getResponseCode();
             if (httpResponse == HttpURLConnection.HTTP_OK) {
@@ -623,6 +666,21 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getMetadata(String tenantId, String namespaceId, String streamId, String key) throws SdsError {
+        return getMetadata(tenantId, namespaceId, streamId, key, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets metadata value from key associated with the stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get metadata from
+     * @param key         the specific key to get the value from
+     * @param headers     http headers to use in the request
+     * @return the specific string value from the metadata Map<String, String>
+     * @throws SdsError any error that occurs
+     */
+    public String getMetadata(String tenantId, String namespaceId, String streamId, String key, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -632,7 +690,7 @@ public class StreamsClient {
                     + getStreamPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                             .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId)
                     + "/Metadata/" + key);
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResponse = urlConnection.getResponseCode();
             if (httpResponse == HttpURLConnection.HTTP_OK) {
@@ -712,6 +770,20 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getValue(String tenantId, String namespaceId, String streamId, String index) throws SdsError {
+        return getValue(tenantId, namespaceId, streamId, index, baseClient.getHttpHeadersForRequest());
+    }
+    /**
+     * gets value at specified index
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get value of
+     * @param index       index to get value at
+     * @param headers     http headers to use in request
+     * @return string of the value
+     * @throws SdsError any error that occurs
+     */
+    public String getValue(String tenantId, String namespaceId, String streamId, String index, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -719,7 +791,7 @@ public class StreamsClient {
         try {
             url = new URL(baseUrl + getSingleQuery.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId).replace("{index}", index));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 
@@ -755,8 +827,22 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getLastValue(String tenantId, String namespaceId, String streamId) throws SdsError {
+        return getLastValue(tenantId, namespaceId, streamId, baseClient.getHttpHeadersForRequest());
+    }
+
+    /***
+     * gets the last value of a stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    the stream to get the last of
+     * @param headers     http headers to use in request
+     * @return string of the last value
+     * @throws SdsError any error that occurs
+     */
+    public String getLastValue(String tenantId, String namespaceId, String streamId, Map<String, String> headers) throws SdsError {
         return getLastValueUrl(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion)
-                .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
+                .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId).replace("{streamId}", streamId), headers);
     }
 
     /***
@@ -767,13 +853,25 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getLastValueUrl(String path) throws SdsError {
+        return getLastValueUrl(path, baseClient.getHttpHeadersForRequest());
+    }
+
+    /***
+     * gets the last value of a stream
+     * 
+     * @param path path to the stream
+     * @param headers http headers to use in request
+     * @return string of the last value
+     * @throws SdsError any error that occurs
+     */
+    public String getLastValueUrl(String path, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
 
         try {
             url = new URL(path + "/Data/Last");
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
             if (httpResult == HttpURLConnection.HTTP_OK) {
@@ -808,6 +906,20 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getFirstValue(String tenantId, String namespaceId, String streamId) throws SdsError {
+        return getFirstValue(tenantId, namespaceId, streamId, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets the first value in the stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get the first value of
+     * @param headers     http headers to use in request
+     * @return string value of the fire value in the stream
+     * @throws SdsError any error that occurs
+     */
+    public String getFirstValue(String tenantId, String namespaceId, String streamId, Map<String, String> headers) throws SdsError {
 
         URL url;
         HttpURLConnection urlConnection = null;
@@ -818,7 +930,7 @@ public class StreamsClient {
             url = new URL(
                     baseUrl + getFirstValuePath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                             .replace("{namespaceId}", namespaceId).replace("{streamId}", streamId));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
             if (httpResult != HttpURLConnection.HTTP_OK) {
@@ -872,7 +984,7 @@ public class StreamsClient {
      */
     public String getWindowValues(String tenantId, String namespaceId, String streamId, String startIndex,
             String endIndex, String filter) throws SdsError {
-        return getWindowValues(tenantId, namespaceId, streamId, startIndex, endIndex, filter, "");
+        return getWindowValues(tenantId, namespaceId, streamId, startIndex, endIndex, filter, "", baseClient.getHttpHeadersForRequest());
     }
 
     /**
@@ -885,11 +997,12 @@ public class StreamsClient {
      * @param endIndex    ending index
      * @param filter      filter to reduce the number of values returned
      * @param form        use this to specify the format of the returned payload
+     * @param headers     http headers to use in request
      * @return string of values
      * @throws SdsError any error that occurs
      */
     public String getWindowValues(String tenantId, String namespaceId, String streamId, String startIndex,
-            String endIndex, String filter, String form) throws SdsError {
+            String endIndex, String filter, String form, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -903,7 +1016,7 @@ public class StreamsClient {
                 intermediate = intermediate.replace("&form=", "");
             }
             url = new URL(baseUrl + intermediate);
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 
@@ -944,6 +1057,25 @@ public class StreamsClient {
      */
     public String getSampledValues(String tenantId, String namespaceId, String streamId, String startIndex,
             String endIndex, int intervals, String sampleBy) throws SdsError {
+        return getSampledValues(tenantId, namespaceId, streamId, startIndex, endIndex, intervals, sampleBy, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets sampled values from the stream
+     * 
+     * @param tenantId    tenant to work under
+     * @param namespaceId namespace within tenant
+     * @param streamId    name of stream to get data from
+     * @param startIndex  starting index
+     * @param endIndex    ending index
+     * @param intervals   number of intervals to run sample
+     * @param sampleBy    property to sample by
+     * @param headers     http headers to use in request
+     * @return
+     * @throws SdsError errors that may occur
+     */
+    public String getSampledValues(String tenantId, String namespaceId, String streamId, String startIndex,
+            String endIndex, int intervals, String sampleBy, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -953,7 +1085,7 @@ public class StreamsClient {
                     .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId)
                     .replace("{streamId}", streamId).replace("{startIndex}", startIndex).replace("{endIndex}", endIndex)
                     .replace("{intervals}", "" + intervals).replace("{sampleBy}", sampleBy));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
             if (httpResult != HttpURLConnection.HTTP_OK) {
@@ -1014,7 +1146,29 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getRangeValues(String tenantId, String namespaceId, String streamId, String startIndex,
-            String endIndex, int skip, int count, boolean reversed, SdsBoundaryType boundaryType) throws SdsError {
+        String endIndex, int skip, int count, boolean reversed, SdsBoundaryType boundaryType) throws SdsError {
+            return getRangeValues(tenantId, namespaceId, streamId, startIndex, endIndex, skip, count, reversed, boundaryType, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets the specified range of values from the stream
+     * 
+     * @param tenantId     tenant to work against
+     * @param namespaceId  namespace to work against
+     * @param streamId     stream to get range of values from
+     * @param startIndex   the starting index
+     * @param endIndex     the ending index
+     * @param skip         number of values to skip (good for paging)
+     * @param count        number of values to return
+     * @param reversed     whether to go forward or backward in regards to the index
+     *                     when getting more values
+     * @param boundaryType SdsBoundaryType
+     * @param headers      http headers to use in request
+     * @return string of the array of values
+     * @throws SdsError any error that occurs
+     */
+    public String getRangeValues(String tenantId, String namespaceId, String streamId, String startIndex,
+            String endIndex, int skip, int count, boolean reversed, SdsBoundaryType boundaryType, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -1029,7 +1183,7 @@ public class StreamsClient {
                 intermediate = intermediate.replace("&endindex=", "");
             }
             url = new URL(baseUrl + intermediate);
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 
@@ -1069,6 +1223,24 @@ public class StreamsClient {
      */
     public String getRangeValuesInterpolated(String tenantId, String namespaceId, String streamId, String startIndex,
             String endIndex, int count) throws SdsError {
+        return getRangeValuesInterpolated(tenantId, namespaceId, streamId, startIndex, endIndex, count, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets interpolated values in the range specified
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    the stream to get values from
+     * @param startIndex  the starting index
+     * @param endIndex    the ending index
+     * @param count       the number of values to return
+     * @param headers     http headers to use in request
+     * @return string of the array of values
+     * @throws SdsError any error that occurs
+     */
+    public String getRangeValuesInterpolated(String tenantId, String namespaceId, String streamId, String startIndex,
+            String endIndex, int count, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -1079,7 +1251,7 @@ public class StreamsClient {
                     .replace("{streamId}", streamId).replace("{startIndex}", startIndex).replace("{endindex}", endIndex)
                     .replace("{count}", "" + count);
             url = new URL(baseUrl + intermediate);
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 
@@ -1117,6 +1289,22 @@ public class StreamsClient {
      */
     public String getIndexCollectionValues(String tenantId, String namespaceId, String streamId,
             ArrayList<String> index) throws SdsError {
+        return getIndexCollectionValues(tenantId, namespaceId, streamId, index, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets values at the indexes provided
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    the stream to get values from
+     * @param index       the list of indexes to retrieve values for
+     * @param headers     http headers to use in request
+     * @return string of the array of values
+     * @throws SdsError any error that occurs
+     */
+    public String getIndexCollectionValues(String tenantId, String namespaceId, String streamId,
+            ArrayList<String> index, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -1131,7 +1319,7 @@ public class StreamsClient {
                     .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId)
                     .replace("{streamId}", streamId).replace("{index}", indexString);
             url = new URL(baseUrl + intermediate);
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 
@@ -1170,11 +1358,34 @@ public class StreamsClient {
      *                     when getting more values
      * @param boundaryType SdsBoundaryType
      * @param streamViewId the streamview definition to desribe how to view the data
+     * @param headers      http headers to use in request
      * @return string of the array of values
      * @throws SdsError any error that occurs
      */
     public String getRangeValuesStreamView(String tenantId, String namespaceId, String streamId, String startIndex,
             int skip, int count, boolean reversed, SdsBoundaryType boundaryType, String streamViewId) throws SdsError {
+        return getRangeValuesStreamView(tenantId, namespaceId, streamId, startIndex, skip, count, reversed, boundaryType, streamViewId, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets a range of values from a streamview
+     * 
+     * @param tenantId     tenant to work against
+     * @param namespaceId  namespace to work against
+     * @param streamId     the stream to get values from
+     * @param startIndex   the starting index
+     * @param skip         the number of values to skip (good for paging)
+     * @param count        the number of values to return
+     * @param reversed     whether to go forward or backward in regards to the index
+     *                     when getting more values
+     * @param boundaryType SdsBoundaryType
+     * @param streamViewId the streamview definition to desribe how to view the data
+     * @param headers      http headers to use in request
+     * @return string of the array of values
+     * @throws SdsError any error that occurs
+     */
+    public String getRangeValuesStreamView(String tenantId, String namespaceId, String streamId, String startIndex,
+            int skip, int count, boolean reversed, SdsBoundaryType boundaryType, String streamViewId, Map<String, String> headers) throws SdsError {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -1185,7 +1396,7 @@ public class StreamsClient {
                     .replace("{streamId}", streamId).replace("{startIndex}", startIndex).replace("{skip}", "" + skip)
                     .replace("{count}", "" + count).replace("{reversed}", "" + reversed)
                     .replace("{boundaryType}", "" + boundaryType).replace("{streamViewId}", "" + streamViewId));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
 

@@ -5,6 +5,8 @@
 package com.github.osisoft.ocs_sample_library_preview.sds;
 
 import com.google.gson.Gson;
+import java.util.Map;
+
 import com.github.osisoft.ocs_sample_library_preview.BaseClient;
 import com.github.osisoft.ocs_sample_library_preview.SdsError;
 
@@ -89,7 +91,7 @@ public class TypesClient {
     }
 
     /**
-     * get the type
+     * get stream type
      * 
      * @param tenantId    tenant to work against
      * @param namespaceId namespace to work against
@@ -98,6 +100,21 @@ public class TypesClient {
      * @throws SdsError any error that occurs
      */
     public String getType(String tenantId, String namespaceId, String typeId) throws SdsError {
+        return getType(tenantId, namespaceId, typeId, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * get stream type
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param typeId      the type to get
+     * @param headers     http headers to use in request
+     * @return the string of the type
+     * @throws SdsError any error that occurs
+     */
+    public String getType(String tenantId, String namespaceId, String typeId, Map<String, String> headers)
+            throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -105,7 +122,7 @@ public class TypesClient {
         try {
             url = new URL(baseUrl + typePath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{typeId}", typeId));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
             if (httpResult == HttpURLConnection.HTTP_OK) {
@@ -129,7 +146,7 @@ public class TypesClient {
     }
 
     /**
-     * gets the types
+     * gets stream types
      * 
      * @param tenantId    tenant to work against
      * @param namespaceId namespace to work against
@@ -143,7 +160,7 @@ public class TypesClient {
     }
 
     /**
-     * gets the types
+     * gets stream types
      * 
      * @param tenantId    tenant to work against
      * @param namespaceId namespace to work against
@@ -154,6 +171,22 @@ public class TypesClient {
      * @throws SdsError any error that occurs
      */
     public String getTypes(String tenantId, String namespaceId, int skip, int count, String query) throws SdsError {
+        return getTypes(tenantId, namespaceId, skip, count, query, baseClient.getHttpHeadersForRequest());
+    }
+
+    /**
+     * gets stream types
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param skip        number of types to skip, useful in paging
+     * @param count       number of types to return
+     * @param query       query to reduce the number of types returned
+     * @param headers     http headers to use in request
+     * @return string of the types
+     * @throws SdsError any error that occurs
+     */
+    public String getTypes(String tenantId, String namespaceId, int skip, int count, String query, Map<String, String> headers) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
@@ -163,7 +196,7 @@ public class TypesClient {
             url = new URL(baseUrl + getTypesPath.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
                     .replace("{namespaceId}", namespaceId).replace("{query}", query)
                     .replace("{skip}", String.valueOf(skip)).replace("{count}", String.valueOf(count)));
-            urlConnection = baseClient.getConnection(url, "GET");
+            urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();
             if (httpResult == HttpURLConnection.HTTP_OK) {

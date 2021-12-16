@@ -13,8 +13,8 @@ import java.net.*;
 import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.*;
 import java.util.Date;
-import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -109,24 +109,49 @@ public class BaseClient {
      * 
      * @param url    the url to connect to
      * @param method the method to do, put, get, delete, etc...
+     * @param headers http headers to use in connection
+     * @return
+     */
+    public HttpURLConnection getConnection(URL url, String method, Map<String, String> headers) {
+        return getHttpURLConnection(url, method, headers);
+    }
+    
+    /**
+     * Makes the connection to the url
+     * 
+     * @param url    the url to connect to
+     * @param method the method to do, put, get, delete, etc...
      * @return
      */
     public HttpURLConnection getConnection(URL url, String method) {
+        return getHttpURLConnection(url, method, Collections.<String, String>emptyMap());
+    }
+
+    private HttpURLConnection getHttpURLConnection(URL url, String method, Map<String, String> headers) {
         HttpURLConnection urlConnection = null;
         String token = "";
         if (!this.ClientId.isEmpty()) {
             token = AcquireAuthToken();
         }
-
+        
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(method);
-            urlConnection.setRequestProperty("Accept", "*/*; q=1");
-            urlConnection.setRequestProperty("Accept-Encoding", "gzip");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
+            
+            if (headers.equals(Collections.<String, String>emptyMap())) {
+                urlConnection.setRequestProperty("Accept", "*/*; q=1");
+                urlConnection.setRequestProperty("Accept-Encoding", "gzip");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+            } else {
+                for (Map.Entry<String, String> header : headers.entrySet()) {
+                    urlConnection.setRequestProperty(header.getKey(), header.getValue());
+                }
+            }
+
             if (token != null && !token.isEmpty()) {
                 urlConnection.setRequestProperty("Authorization", "Bearer " + token);
             }
+
             urlConnection.setUseCaches(false);
             urlConnection.setConnectTimeout(50000);
             urlConnection.setReadTimeout(50000);
@@ -147,6 +172,33 @@ public class BaseClient {
 
         return urlConnection;
     }
+
+    /**
+     * Helper function to get standard request headers
+     * 
+     * @return Map<String,String> object with http headers
+     */
+    public Map<String, String> getHttpHeadersForRequest() {
+        Map<String, String> headers = new Hashtable<String, String>();
+        headers.put("Accept", "*/*; q=1");
+        headers.put("Accept-Encoding", "gzip");
+        headers.put("Content-Type", "application/json");
+
+        return headers;
+    } 
+
+    /**
+     * Helper function to get request headers for communities APIs
+     * 
+     * @param communityId id of the community
+     * @return Map<String,String> object with http headers
+     */
+    public Map<String, String> getHttpHeadersForCommunitiesRequest(String communityId) {
+        Map<String, String> headers = getHttpHeadersForRequest();
+        headers.put("Community-id", communityId);
+
+        return headers;
+    } 
 
     /**
      * Makes the connection to the url
