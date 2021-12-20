@@ -124,7 +124,7 @@ public class BaseClient {
      * @return
      */
     public HttpURLConnection getConnection(URL url, String method) {
-        return getHttpURLConnection(url, method, Collections.<String, String>emptyMap());
+        return getHttpURLConnection(url, method, getHttpHeadersForRequest();
     }
 
     private HttpURLConnection getHttpURLConnection(URL url, String method, Map<String, String> headers) {
@@ -138,14 +138,8 @@ public class BaseClient {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(method);
             
-            if (headers.equals(Collections.<String, String>emptyMap())) {
-                urlConnection.setRequestProperty("Accept", "*/*; q=1");
-                urlConnection.setRequestProperty("Accept-Encoding", "gzip");
-                urlConnection.setRequestProperty("Content-Type", "application/json");
-            } else {
-                for (Map.Entry<String, String> header : headers.entrySet()) {
-                    urlConnection.setRequestProperty(header.getKey(), header.getValue());
-                }
+            for (Map.Entry<String, String> header : headers.entrySet()) {
+                urlConnection.setRequestProperty(header.getKey(), header.getValue());
             }
 
             if (token != null && !token.isEmpty()) {
