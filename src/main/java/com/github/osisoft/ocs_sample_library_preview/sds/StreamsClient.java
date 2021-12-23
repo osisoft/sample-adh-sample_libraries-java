@@ -841,7 +841,7 @@ public class StreamsClient {
      * @throws SdsError any error that occurs
      */
     public String getLastValue(String tenantId, String namespaceId, String streamId, Map<String, String> headers) throws SdsError {
-        return getLastValueUrl(baseUrl + getStreamPath.replace("{apiVersion}", apiVersion)
+        return getLastValueUrl(baseUrl + getLastValuePath.replace("{apiVersion}", apiVersion)
                 .replace("{tenantId}", tenantId).replace("{namespaceId}", namespaceId).replace("{streamId}", streamId), headers);
     }
 
@@ -870,7 +870,7 @@ public class StreamsClient {
         String response = "";
 
         try {
-            url = new URL(path + "/Data/Last");
+            url = new URL(path);
             urlConnection = baseClient.getConnection(url, "GET", headers);
 
             int httpResult = urlConnection.getResponseCode();

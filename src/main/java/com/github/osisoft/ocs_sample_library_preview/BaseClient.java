@@ -124,7 +124,7 @@ public class BaseClient {
      * @return
      */
     public HttpURLConnection getConnection(URL url, String method) {
-        return getHttpURLConnection(url, method, getHttpHeadersForRequest();
+        return getHttpURLConnection(url, method, getHttpHeadersForRequest());
     }
 
     private HttpURLConnection getHttpURLConnection(URL url, String method, Map<String, String> headers) {
