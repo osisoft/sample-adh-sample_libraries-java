@@ -85,4 +85,23 @@ public class OCSClient {
         return mGson.fromJson(input, new TypeToken<Map<String, Object>[]>() {
         }.getType());
     }
+
+    /**
+     * Helper function to get standard request headers
+     * 
+     * @return Map<String,String> object with http headers
+     */
+    public Map<String, String> getHttpHeadersForRequest() {
+        return baseClient.getHttpHeadersForRequest();
+    }
+
+    /**
+     * Helper function to get request headers for communities APIs
+     * 
+     * @param communityId id of the community
+     * @return Map<String,String> object with http headers
+     */
+    public Map<String, String> getHttpHeadersForCommunitiesRequest(String communityId) {
+        return baseClient.getHttpHeadersForCommunitiesRequest(communityId);
+    } 
 }
