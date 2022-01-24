@@ -987,6 +987,25 @@ public class StreamsClient {
         return getWindowValues(tenantId, namespaceId, streamId, startIndex, endIndex, filter, "", baseClient.getHttpHeadersForRequest());
     }
 
+    
+    /**
+     * gets window value of stream
+     * 
+     * @param tenantId    tenant to work against
+     * @param namespaceId namespace to work against
+     * @param streamId    stream to get window value from
+     * @param startIndex  starting index
+     * @param endIndex    ending index
+     * @param filter      filter to reduce the number of values returned
+     * @param form        use this to specify the format of the returned payload
+     * @return string of values
+     * @throws SdsError any error that occurs
+     */
+    public String getWindowValues(String tenantId, String namespaceId, String streamId, String startIndex,
+            String endIndex, String filter, String form) throws SdsError {
+        return getWindowValues(tenantId, namespaceId, streamId, startIndex, endIndex, filter, form, baseClient.getHttpHeadersForRequest());
+    }
+
     /**
      * gets window value of stream
      * 
