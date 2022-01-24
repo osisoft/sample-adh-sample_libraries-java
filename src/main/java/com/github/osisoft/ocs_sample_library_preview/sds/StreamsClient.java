@@ -987,7 +987,6 @@ public class StreamsClient {
         return getWindowValues(tenantId, namespaceId, streamId, startIndex, endIndex, filter, "", baseClient.getHttpHeadersForRequest());
     }
 
-    
     /**
      * gets window value of stream
      * 
