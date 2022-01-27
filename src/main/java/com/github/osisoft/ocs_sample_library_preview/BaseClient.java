@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.zip.GZIPInputStream;
 
 /**
- * Base client that helps with interactions to OCS
+ * Base client that helps with interactions to ADH
  */
 public class BaseClient {
     /**
@@ -26,7 +26,7 @@ public class BaseClient {
      */
     public Gson mGson = null;
     /**
-     * use this to see the base url for going against OCS
+     * use this to see the base url for going against ADH
      */
     public String baseUrl = null;
     /**
@@ -86,11 +86,11 @@ public class BaseClient {
      * Creates a baseclient using the passed information rather than the
      * configuration settings
      * 
-     * @param apiVersion   APIversion of OCS
+     * @param apiVersion   APIversion of ADH
      * @param tenantId     The tenant identifier
      * @param clientId     Client id to login with
      * @param clientSecret client secret to login with
-     * @param resource     OCS url
+     * @param resource     ADH url
      */
     public BaseClient(String apiVersion, String tenantId, String clientId, String clientSecret, String resource) {
         this.TenantId = tenantId;

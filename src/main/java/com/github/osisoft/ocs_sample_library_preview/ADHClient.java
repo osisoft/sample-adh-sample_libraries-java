@@ -11,11 +11,9 @@ import com.github.osisoft.ocs_sample_library_preview.security.*;
 import com.github.osisoft.ocs_sample_library_preview.community.*;
 
 /**
- * Client to call into for interacting with OCS
- * @deprecated
- * OCSClient is deprecated as OSIsoft Cloud Services has now been migrated to AVEVA Data Hub, use ADHClient instead.
+ * Client to call into for interacting with ADH
  */
-public class OCSClient {
+public class ADHClient {
 
     /**
      * Client to help with interactions with DataViews
@@ -45,25 +43,25 @@ public class OCSClient {
     private BaseClient baseClient;
 
     /**
-     * Client to call into for interacting with OCS. Is configured from config file
+     * Client to call into for interacting with ADH. Is configured from config file
      * running at base program's folder
      */
-    public OCSClient() {
+    public ADHClient() {
         baseClient = new BaseClient();
         init();
     }
 
     /**
-     * Client to call into for interacting with OCS. Is configured from config file
+     * Client to call into for interacting with ADH. Is configured from config file
      * running at base program's folder.
      * 
-     * @param apiVersion   APIversion of OCS
+     * @param apiVersion   APIversion of ADH
      * @param tenantId     The tenant identifier
      * @param clientId     Client id to login with
      * @param clientSecret client secret to login with
-     * @param resource     OCS url
+     * @param resource     ADH url
      */
-    public OCSClient(String apiVersion, String tenantId, String clientId, String clientSecret, String resource) {
+    public ADHClient(String apiVersion, String tenantId, String clientId, String clientSecret, String resource) {
         baseClient = new BaseClient(apiVersion, tenantId, clientId, clientSecret, resource);
         init();
     }

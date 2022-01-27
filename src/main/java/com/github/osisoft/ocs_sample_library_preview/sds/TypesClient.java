@@ -31,7 +31,7 @@ public class TypesClient {
     /**
      * base constructor
      * 
-     * @param base this base client helps make the OCS calls
+     * @param base this base client helps make the ADH calls
      */
     public TypesClient(BaseClient base) {
         baseClient = base;

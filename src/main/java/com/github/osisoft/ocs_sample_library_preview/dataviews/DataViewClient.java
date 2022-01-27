@@ -12,7 +12,7 @@ import java.util.regex.*;
 import com.github.osisoft.ocs_sample_library_preview.*;
 
 /**
- * This client handles calls against the Data View API on OCS
+ * This client handles calls against the Data View API on ADH
  */
 public class DataViewClient {
     private String TenantId;
@@ -45,7 +45,7 @@ public class DataViewClient {
     /**
      * Constructor
      * 
-     * @param base BaseClient that handles some base information needed to call OCS
+     * @param base BaseClient that handles some base information needed to call ADH
      */
     public DataViewClient(BaseClient base) {
         this.baseClient = base;
