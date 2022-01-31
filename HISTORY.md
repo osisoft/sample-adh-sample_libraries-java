@@ -1,5 +1,9 @@
 # Version History
 
+## 0.1.9-preview / 2022-01-15
+
+- Fix missing getWindowValues overload
+
 ## 0.1.8-preview / 2022-01-15
 
 - Add support for OCS communities
