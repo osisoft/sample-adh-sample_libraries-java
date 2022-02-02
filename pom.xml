@@ -4,7 +4,7 @@
 
   <groupId>com.github.osisoft.ocs_sample_library_preview</groupId>
   <artifactId>ocs_sample_library_preview</artifactId>
-  <version>0.1.9-preview</version>
+  <version>0.2.0-preview</version>
 
   <name>ocs_sample_library_preview</name>
   <description>A preview of an ADH (AVEVA Data Hub) client library</description>
