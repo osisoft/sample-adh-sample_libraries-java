@@ -1,4 +1,4 @@
-Building a Java client to make REST API calls to OCS
+Building a Java client to make REST API calls to ADH
 ===============================================================
 
 The sample code described in this topic demonstrates how to use Java to store 
@@ -39,7 +39,7 @@ Using a command line
 *Currently this project is not hosted on the central Maven repo and must be compiled and installed locally to be used in any of the other examples.
 To do this run mvn install library_samples\Java\pom.xml
 
-Instantiate an OCS Client
+Instantiate an ADH Client
 -----------------------
 
 Each REST API call consists of an HTTP request along with a specific URL and
@@ -59,7 +59,7 @@ HTTP methods to CRUD operations as shown in the following table:
 | DELETE        | Delete           | URL parameters     |
 +---------------+------------------+--------------------+
 
-The constructor for the OCSClient class takes the base URL (that is, the
+The constructor for the ADHClient class takes the base URL (that is, the
 protocol, server address and port number) and the api version. It also creates a new Gson
 serializer/deserializer to convert between Java Objects and JSON.  This is all done in subclass used as a base.
 
@@ -118,7 +118,7 @@ and may be used in the sample.
 The values to be replaced are in ``config.properties``:
 
 ```
-resource = https://dat-b.osisoft.com
+resource = https://uswe.datahub.connect.aveva.com
 clientId = PLACEHOLDER_REPLACE_WITH_CLIENT_ID
 clientSecret = PLACEHOLDER_REPLACE_WITH_CLIENT_SECRET
 tenantId = PLACEHOLDER_REPLACE_WITH_TENANT_ID

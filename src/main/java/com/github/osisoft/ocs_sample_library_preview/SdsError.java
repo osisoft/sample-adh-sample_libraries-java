@@ -30,7 +30,7 @@ public class SdsError extends Exception {
     /**
      * if support is needed please know the Operation-ID header information for (it is included in the exception below automatically too)
      * 
-     * Use this to capture an OCS action error
+     * Use this to capture an ADH action error
      * @param urlConnection the failed action
      * @param msg message to help illuminate the issue
      */
@@ -59,7 +59,7 @@ public class SdsError extends Exception {
     }
 
     /**
-     * gets the status code associated with the OCS based issue
+     * gets the status code associated with the ADH based issue
      * @return httpStatusCode
      */
     public int getHttpStatusCode() {

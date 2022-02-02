@@ -1,5 +1,10 @@
 # Version History
 
+## 0.2.0-preview / 2022-01-27
+
+- Updated for AVEVA Data Hub and deprecated OCSClient in favor of new ADHClient
+- Updated dependencies
+
 ## 0.1.9-preview / 2022-01-15
 
 - Fix missing getWindowValues overload

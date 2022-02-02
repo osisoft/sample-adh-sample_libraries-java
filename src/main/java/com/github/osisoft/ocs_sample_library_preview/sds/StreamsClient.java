@@ -67,7 +67,7 @@ public class StreamsClient {
     /**
      * Base Constructor
      * 
-     * @param base baseclient that helps with OCS calls
+     * @param base baseclient that helps with ADH calls
      */
     public StreamsClient(BaseClient base) {
         baseClient = base;
