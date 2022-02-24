@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.*;
 
 import com.github.osisoft.ocs_sample_library_preview.*;
@@ -108,12 +109,17 @@ public class DataViewClient {
         return response;
     }
 
-    private ResponseWithLinks getRequestResponseWithLinks(URL url, String method, String body) throws SdsError {
+    private ResponseWithLinks getRequestResponseWithLinks(URL url, String method, String body, Map<String, String> headers) throws SdsError {
         HttpURLConnection urlConnection = null;
         ResponseWithLinks response = new ResponseWithLinks();
 
         try {
-            urlConnection = baseClient.getConnection(url, method);
+            if (headers == null) {
+                urlConnection = baseClient.getConnection(url, method);    
+            }
+            else {
+                urlConnection = baseClient.getConnection(url, method, headers);
+            }
 
             if (body != null) {
                 try (OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream())) {
@@ -553,7 +559,7 @@ public class DataViewClient {
             throws SdsError, MalformedURLException {
         URL url = new URL(baseUrl
                 + dataInterpolatedPath.replace("{namespaceId}", namespaceId).replace("{dataViewId}", dataViewId));
-        return getRequestResponseWithLinks(url, "GET", null);
+        return getRequestResponseWithLinks(url, "GET", null, null);
     }
 
     /**
@@ -634,7 +640,7 @@ public class DataViewClient {
             throws SdsError, MalformedURLException {
         URL url = new URL(baseUrl
                 + dataInterpolatedPath.replace("{namespaceId}", namespaceId).replace("{dataViewId}", dataViewId));
-        return getRequestResponseWithLinks(url, "GET", null);
+        return getRequestResponseWithLinks(url, "GET", null, null);
     }
 
     /**
@@ -677,6 +683,31 @@ public class DataViewClient {
      * @param interval    The requested interval between index values. The default
      *                    value is the .DefaultInterval of the data view. Optional
      *                    if a default is specified.
+     * @return ResponseWithLinks, an object containing the String Response in the
+     *         requested format, and if returned by the server, also includes links
+     *         to the Next and First pages of data.
+     * @throws SdsError Error response
+     */
+    public ResponseWithLinks getDataViewInterpolatedData(String namespaceId, String dataViewId, String startIndex, String endIndex,
+            String interval, Boolean verbose) throws SdsError, MalformedURLException {
+        return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval, "default", "Refresh", 1000, verbose);
+    }
+
+    /**
+     * Get interpolated data for the provided index parameters with paging. 
+     * See documentation on paging for further information.
+     *
+     * @param namespaceId The namespace identifier
+     * @param dataViewId  The data view identifier
+     * @param startIndex  The requested start index, inclusive. The default value is
+     *                    the .DefaultStartIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param endIndex    The requested end index, inclusive. The default value is
+     *                    the .DefaultEndIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param interval    The requested interval between index values. The default
+     *                    value is the .DefaultInterval of the data view. Optional
+     *                    if a default is specified.
      * @param form        The requested data output format. Output formats: default,
      *                    table, tableh, csv, csvh.
      * @param cache       "Refresh" to force the resource to re-resolve. "Preserve"
@@ -691,11 +722,49 @@ public class DataViewClient {
      */
     public ResponseWithLinks getDataViewInterpolatedData(String namespaceId, String dataViewId, String startIndex, String endIndex,
             String interval, String form, String cache, Integer count) throws SdsError, MalformedURLException {
+        return getDataViewInterpolatedData(namespaceId, dataViewId, startIndex, endIndex, interval, form, cache, count, true);
+    }
+
+    /**
+     * Get interpolated data for the provided index parameters with paging. 
+     * See documentation on paging for further information.
+     *
+     * @param namespaceId The namespace identifier
+     * @param dataViewId  The data view identifier
+     * @param startIndex  The requested start index, inclusive. The default value is
+     *                    the .DefaultStartIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param endIndex    The requested end index, inclusive. The default value is
+     *                    the .DefaultEndIndex of the data view. Optional if a
+     *                    default value is specified.
+     * @param interval    The requested interval between index values. The default
+     *                    value is the .DefaultInterval of the data view. Optional
+     *                    if a default is specified.
+     * @param form        The requested data output format. Output formats: default,
+     *                    table, tableh, csv, csvh.
+     * @param cache       "Refresh" to force the resource to re-resolve. "Preserve"
+     *                    to use cached information, if available. "Refresh" is the
+     *                    default value.
+     * @param count       The requested page size. The default value is 1000. The
+     *                    maximum is 250,000.
+     * @return ResponseWithLinks, an object containing the String Response in the
+     *         requested format, and if returned by the server, also includes links
+     *         to the Next and First pages of data.
+     * @throws SdsError Error response
+     */
+    public ResponseWithLinks getDataViewInterpolatedData(String namespaceId, String dataViewId, String startIndex, String endIndex,
+            String interval, String form, String cache, Integer count, Boolean verbose) throws SdsError, MalformedURLException {
+
+        Map<String, String> headers = null;
+        if(!verbose)
+        {
+            headers = baseClient.getHttpHeadersForNonVerboseRequest();
+        }
         URL url = new URL(baseUrl + getDataInterpolated.replace("{namespaceId}", namespaceId)
                 .replace("{dataViewId}", dataViewId).replace("{startIndex}", startIndex).replace("{endIndex}", endIndex)
                 .replace("{interval}", interval).replace("{form}", form).replace("{cache}", cache)
                 .replace("{count}", count.toString()));
-        return getRequestResponseWithLinks(url, "GET", null);
+        return getRequestResponseWithLinks(url, "GET", null, headers);
     }
 
     /**
@@ -749,6 +818,6 @@ public class DataViewClient {
         URL url = new URL(baseUrl + getDataStored.replace("{namespaceId}", namespaceId)
                 .replace("{dataViewId}", dataViewId).replace("{startIndex}", startIndex).replace("{endIndex}", endIndex)
                 .replace("{form}", form).replace("{cache}", cache).replace("{count}", count.toString()));
-        return getRequestResponseWithLinks(url, "GET", null);
+        return getRequestResponseWithLinks(url, "GET", null, null);
     }
 }

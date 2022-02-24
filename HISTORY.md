@@ -1,5 +1,9 @@
 # Version History
 
+## 0.2.1-preview / 2022-02-24
+
+- Added the non-verbose option for data views
+
 ## 0.2.0-preview / 2022-01-27
 
 - Updated for AVEVA Data Hub and deprecated OCSClient in favor of new ADHClient

@@ -195,6 +195,18 @@ public class BaseClient {
     } 
 
     /**
+     * Helper function to get request headers for a non-verbose call to the OCS API
+     * 
+     * @return Map<String,String> object with http headers
+     */
+    public Map<String, String> getHttpHeadersForNonVerboseRequest() {
+        Map<String, String> headers = getHttpHeadersForRequest();
+        headers.put("Accept-verbosity", "non-verbose");
+
+        return headers;
+    } 
+    
+    /**
      * Makes the connection to the url
      * 
      * @param url    the url to connect to
