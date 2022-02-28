@@ -106,7 +106,6 @@ public class OCSClient {
     public Map<String, String> getHttpHeadersForCommunitiesRequest(String communityId) {
         return baseClient.getHttpHeadersForCommunitiesRequest(communityId);
     } 
-
     
     /**
      * Helper function to get request headers for non-verbose calls

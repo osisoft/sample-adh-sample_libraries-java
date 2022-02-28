@@ -109,18 +109,38 @@ public class DataViewClient {
         return response;
     }
 
-    private ResponseWithLinks getRequestResponseWithLinks(URL url, String method, String body, Map<String, String> headers) throws SdsError {
+    private ResponseWithLinks getRequestResponseWithLinks(URL url, String method, String body) throws SdsError {
+        
         HttpURLConnection urlConnection = null;
+
+        try {
+            urlConnection = baseClient.getConnection(url, method);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        return getRequestResponseWithLinks(urlConnection, body);
+    }
+
+    private ResponseWithLinks getRequestResponseWithLinks(URL url, String method, String body, Map<String, String> headers) throws SdsError {
+
+        HttpURLConnection urlConnection = null;
+
+        try {
+            urlConnection = baseClient.getConnection(url, method, headers);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+
+        return getRequestResponseWithLinks(urlConnection, body);
+    }
+
+    private ResponseWithLinks getRequestResponseWithLinks(HttpURLConnection urlConnection, String body) throws SdsError {
+        
         ResponseWithLinks response = new ResponseWithLinks();
 
         try {
-            if (headers == null) {
-                urlConnection = baseClient.getConnection(url, method);    
-            }
-            else {
-                urlConnection = baseClient.getConnection(url, method, headers);
-            }
-
+            
             if (body != null) {
                 try (OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream())) {
                     try (OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
@@ -559,7 +579,7 @@ public class DataViewClient {
             throws SdsError, MalformedURLException {
         URL url = new URL(baseUrl
                 + dataInterpolatedPath.replace("{namespaceId}", namespaceId).replace("{dataViewId}", dataViewId));
-        return getRequestResponseWithLinks(url, "GET", null, null);
+        return getRequestResponseWithLinks(url, "GET", null);
     }
 
     /**
@@ -640,7 +660,7 @@ public class DataViewClient {
             throws SdsError, MalformedURLException {
         URL url = new URL(baseUrl
                 + dataInterpolatedPath.replace("{namespaceId}", namespaceId).replace("{dataViewId}", dataViewId));
-        return getRequestResponseWithLinks(url, "GET", null, null);
+        return getRequestResponseWithLinks(url, "GET", null);
     }
 
     /**
@@ -759,16 +779,18 @@ public class DataViewClient {
     public ResponseWithLinks getDataViewInterpolatedData(String namespaceId, String dataViewId, String startIndex, String endIndex,
             String interval, String form, String cache, Integer count, Boolean verbose) throws SdsError, MalformedURLException {
 
-        Map<String, String> headers = null;
-        if(!verbose)
-        {
-            headers = baseClient.getHttpHeadersForNonVerboseRequest();
-        }
         URL url = new URL(baseUrl + getDataInterpolated.replace("{namespaceId}", namespaceId)
                 .replace("{dataViewId}", dataViewId).replace("{startIndex}", startIndex).replace("{endIndex}", endIndex)
                 .replace("{interval}", interval).replace("{form}", form).replace("{cache}", cache)
                 .replace("{count}", count.toString()));
-        return getRequestResponseWithLinks(url, "GET", null, headers);
+
+        if(!verbose)
+        {
+            Map<String, String> headers = baseClient.getHttpHeadersForNonVerboseRequest();
+            return getRequestResponseWithLinks(url, "GET", null, headers);
+        }
+
+        return getRequestResponseWithLinks(url, "GET", null);
     }
 
     /**
@@ -879,14 +901,16 @@ public class DataViewClient {
     public ResponseWithLinks getDataViewStoredData(String namespaceId, String dataViewId, String startIndex, String endIndex,
             String form, String cache, Integer count, Boolean verbose) throws SdsError, MalformedURLException {
         
-        Map<String, String> headers = null;
-        if(!verbose)
-        {
-            headers = baseClient.getHttpHeadersForNonVerboseRequest();
-        }
         URL url = new URL(baseUrl + getDataStored.replace("{namespaceId}", namespaceId)
                 .replace("{dataViewId}", dataViewId).replace("{startIndex}", startIndex).replace("{endIndex}", endIndex)
                 .replace("{form}", form).replace("{cache}", cache).replace("{count}", count.toString()));
-        return getRequestResponseWithLinks(url, "GET", null, headers);
+
+        if(!verbose)
+        {
+            Map<String, String> headers = baseClient.getHttpHeadersForNonVerboseRequest();
+            return getRequestResponseWithLinks(url, "GET", null, headers);
+        }
+        
+        return getRequestResponseWithLinks(url, "GET", null);
     }
 }
