@@ -703,7 +703,7 @@ public class DataViewClient {
      * @param interval    The requested interval between index values. The default
      *                    value is the .DefaultInterval of the data view. Optional
      *                    if a default is specified.
-     * @param verbose     Whether the response from OCS should be verbose (containing
+     * @param verbose     Whether the response from Data Hub should be verbose (containing
      *                    values that match the default value) or not
      * @return ResponseWithLinks, an object containing the String Response in the
      *         requested format, and if returned by the server, also includes links
@@ -769,7 +769,7 @@ public class DataViewClient {
      *                    default value.
      * @param count       The requested page size. The default value is 1000. The
      *                    maximum is 250,000.
-     * @param verbose     Whether the response from OCS should be verbose (containing
+     * @param verbose     Whether the response from Data Hub should be verbose (containing
      *                    values that match the default value) or not
      * @return ResponseWithLinks, an object containing the String Response in the
      *         requested format, and if returned by the server, also includes links
@@ -827,7 +827,7 @@ public class DataViewClient {
      * @param endIndex    The requested end index, inclusive. The default value is
      *                    the .DefaultEndIndex of the data view. Optional if a
      *                    default value is specified.
-     * @param verbose     Whether the response from OCS should be verbose (containing
+     * @param verbose     Whether the response from Data Hub should be verbose (containing
      *                    values that match the default value) or not
      * @return ResponseWithLinks, an object containing the String Response in the
      *         requested format, and if returned by the server, also includes links
@@ -859,8 +859,6 @@ public class DataViewClient {
      *                    default value.
      * @param count       The requested page size. The default value is 1000. The
      *                    maximum is 250,000.
-     * @param verbose     Whether the response from OCS should be verbose (containing
-     *                    values that match the default value) or not
      * @return ResponseWithLinks, an object containing the String Response in the
      *         requested format, and if returned by the server, also includes links
      *         to the Next and First pages of data.
@@ -891,7 +889,7 @@ public class DataViewClient {
      *                    default value.
      * @param count       The requested page size. The default value is 1000. The
      *                    maximum is 250,000.
-     * @param verbose     Whether the response from OCS should be verbose (containing
+     * @param verbose     Whether the response from Data Hub should be verbose (containing
      *                    values that match the default value) or not
      * @return ResponseWithLinks, an object containing the String Response in the
      *         requested format, and if returned by the server, also includes links
