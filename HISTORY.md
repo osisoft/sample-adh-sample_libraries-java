@@ -1,5 +1,9 @@
 # Version History
 
+## 0.2.2-preview / 2022-03-15
+
+- Updated dependencies
+
 ## 0.2.1-preview / 2022-02-24
 
 - Added the non-verbose option for data views
