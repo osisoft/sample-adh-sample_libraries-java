@@ -17,7 +17,7 @@ public class CommunitiesClient {
     private BaseClient baseClient;
     // REST API url strings
     // base of all requests
-    private String requestBase = "api/{apiVersion}-preview/Tenants/{tenantId}";
+    private String requestBase = "api/{apiVersion}-preview";
     private String searchBase = requestBase + "/Search/Communities/{communityId}/Streams?query={query}";
 
     public CommunitiesClient(BaseClient base) {
@@ -27,13 +27,13 @@ public class CommunitiesClient {
         this.mGson = base.mGson;
     }
 
-    public ArrayList<StreamSearchResult> getCommunityStreams(String tenantId, String communityId, String query) throws SdsError {
+    public ArrayList<StreamSearchResult> getCommunityStreams(String communityId, String query) throws SdsError {
         URL url;
         HttpURLConnection urlConnection = null;
         String response = "";
 
         try {
-            url = new URL(baseUrl + searchBase.replace("{apiVersion}", apiVersion).replace("{tenantId}", tenantId)
+            url = new URL(baseUrl + searchBase.replace("{apiVersion}", apiVersion)
               .replace("{communityId}", communityId).replace("{query}", query));
             urlConnection = baseClient.getConnection(url, "GET");
 
