@@ -3,7 +3,7 @@
 | :loudspeaker: **Notice**: Samples have been updated to reflect that they work on AVEVA Data Hub. The samples also work on OSIsoft Cloud Services unless otherwise noted. |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-**Version:** 0.2.3-preview
+**Version:** 0.2.4-preview
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-sample_libraries-java?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2621&branchName=main)
 
