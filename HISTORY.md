@@ -1,5 +1,9 @@
 # Version History
 
+## 0.2.4-preview / 2022-08-09
+
+- Add dependabot.yml to automate dependency checks
+
 ## 0.2.3-preview / 2022-05-24
 
 - Update communities queries to be compliant with changes made to the API
