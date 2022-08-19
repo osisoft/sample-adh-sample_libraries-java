@@ -1,5 +1,9 @@
 # Version History
 
+## 0.2.5_preview / 2022-08-17
+
+- Automate dependabot approval and automerge
+
 ## 0.2.4-preview / 2022-08-09
 
 - Add dependabot.yml to automate dependency checks
