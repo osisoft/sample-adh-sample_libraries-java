@@ -1,6 +1,6 @@
 # AVEVA Data Hub Java Library Sample
 
-**Version:** 0.2.5_preview
+**Version:** 0.2.6_preview
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-sample_libraries-java?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2621&branchName=main)
 
