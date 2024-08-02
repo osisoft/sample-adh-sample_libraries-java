@@ -13,7 +13,7 @@ import com.github.osisoft.ocs_sample_library_preview.community.*;
 /**
  * Client to call into for interacting with OCS
  * @deprecated
- * OCSClient is deprecated as OSIsoft Cloud Services has now been migrated to AVEVA Data Hub, use ADHClient instead.
+ * OCSClient is deprecated as OSIsoft Cloud Services has now been migrated to CONNECT data services, use ADHClient instead.
  */
 public class OCSClient {
 

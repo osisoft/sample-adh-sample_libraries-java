@@ -1,10 +1,10 @@
-# AVEVA Data Hub Java Library Sample
+# CONNECT data services Java Library Sample
 
 **Version:** 0.2.6_preview
 
-[![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-sample_libraries-java?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2621&branchName=main)
+[![Build Status](https://dev.azure.com/AVEVA-VSTS/Cloud%20Platform/_apis/build/status%2Fproduct-readiness%2FADH%2FAVEVA.sample-adh-sample_libraries-java?repoName=AVEVA%2Fsample-adh-sample_libraries-java&branchName=main)](https://dev.azure.com/AVEVA-VSTS/Cloud%20Platform/_build/latest?definitionId=16142&repoName=AVEVA%2Fsample-adh-sample_libraries-java&branchName=main)
 
-The Java ADH library is an introductory language-specific examples of programming against AVEVA Cloud Services ([ADH](https://www.osisoft.com/Solutions/OSIsoft-Cloud-Services/)). It is intended as an instructional samples only and is not for production use.
+The Java Cds library is an introductory language-specific examples of programming against AVEVA Cloud Services ([Cds](https://www.aveva.com/en/products/aveva-pi-system/)). It is intended as an instructional samples only and is not for production use.
 
 The library is not intended to show every endpoint and every option/parameter for endpoints it has. The library is known to be incomplete.
 
@@ -43,6 +43,6 @@ Developed against Maven 3.6.1 and Java 1.8.0_181.
 
 ---
 
-For the main ADH sample libraries page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SAMPLE_LIBRARIES.md)  
-For the main ADH samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
-For the main AVEVA samples page [ReadMe](https://github.com/osisoft/OSI-Samples)
+For the main Cds sample libraries page [ReadMe](https://github.com/AVEVA/AVEVA-Samples-CloudOperations/blob/main/docs/SAMPLE_LIBRARIES.md)  
+For the main Cds samples page [ReadMe](https://github.com/AVEVA/AVEVA-Samples-CloudOperations)  
+For the main AVEVA samples page [ReadMe](https://github.com/AVEVA/AVEVA-Samples)
