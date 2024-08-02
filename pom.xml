@@ -8,7 +8,7 @@
   <version>0.2.5-preview</version>
 
   <name>ocs_sample_library_preview</name>
-  <description>A preview of an ADH (AVEVA Data Hub) client library</description>
+  <description>A preview of an ADH (CONNECT data services) client library</description>
   <url>https://github.com/osisoft/sample-ocs-sample_libraries-java</url>
   <developers>
     <developer>
